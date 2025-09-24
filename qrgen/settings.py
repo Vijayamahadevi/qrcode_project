@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-6u+=xo#4e!e=)%vznqfg#qtg=mwp)7(ftxpq-9(=*c_1o^rtaa
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get(
+    "ALLOWED_HOSTS", "localhost,127.0.0.1,panda-qrcode.onrender.com"
+).split(",")
 
 
 # Application definition
