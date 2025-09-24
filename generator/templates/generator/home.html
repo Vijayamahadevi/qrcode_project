@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QR Code Generator</title>
+  <link rel="stylesheet" href="{% static 'generator/style.css' %}">
+</head>
+<body>
+  <div class="container">
+   <h1>QR Code Generator</h1>
+   <p>Type text or paste a URL and click <strong>Generate</strong>.</p>
+
+   <form method="post">
+     {% csrf_token %}
+     <input type="text" name="text" placeholder="https://example.com or some text" required>
+     <button type="submit">Generate</button>
+   </form>
+
+   {% if qr_data_uri %}
+   <div class="preview">
+     <h2>Preview</h2>
+     <img class="qr" src="{{ qr_data_uri }}" alt="QR code">
+     <p>
+       <a href="{{ qr_data_uri }}" download="qrcode.png">Download PNG</a>
+     </p>
+   </div>
+   {% endif %}
+  </div>
+</body>
+</html>
